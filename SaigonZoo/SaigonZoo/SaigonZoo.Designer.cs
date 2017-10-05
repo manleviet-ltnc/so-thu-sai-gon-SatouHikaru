@@ -240,7 +240,6 @@
             // 
             // timer1
             // 
-            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmSaigonZoo
@@ -256,6 +255,7 @@
             this.Name = "frmSaigonZoo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "So Thu Xi Gon";
+            this.Load += new System.EventHandler(this.frmSaigonZoo_Load);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);

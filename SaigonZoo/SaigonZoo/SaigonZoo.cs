@@ -94,5 +94,10 @@ namespace SaigonZoo
                                          DateTime.Now.Month,
                                          DateTime.Now.Year);
         }
+
+        private void frmSaigonZoo_Load(object sender, EventArgs e)
+        {
+            timer1.Enabled = true;
+        }
     }
 }
