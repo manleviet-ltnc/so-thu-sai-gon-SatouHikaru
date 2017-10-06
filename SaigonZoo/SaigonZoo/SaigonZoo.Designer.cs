@@ -33,12 +33,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.lstThuMoi = new System.Windows.Forms.ListBox();
-            this.lstDanhSach = new System.Windows.Forms.ListBox();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.btnSave = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.lstDanhSach = new System.Windows.Forms.ListBox();
             this.lblTime = new System.Windows.Forms.Label();
+            this.btnDelete = new System.Windows.Forms.Button();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.hToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuLoad = new System.Windows.Forms.ToolStripMenuItem();
@@ -49,7 +50,7 @@
             this.mnuCopy = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuCut = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuPaste = new System.Windows.Forms.ToolStripMenuItem();
-            this.xoáToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnuDelete = new System.Windows.Forms.ToolStripMenuItem();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tableLayoutPanel1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
@@ -86,29 +87,16 @@
             this.lstThuMoi.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_DragEnter);
             this.lstThuMoi.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox_MouseDown);
             // 
-            // lstDanhSach
-            // 
-            this.lstDanhSach.AllowDrop = true;
-            this.lstDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lstDanhSach.FormattingEnabled = true;
-            this.lstDanhSach.Location = new System.Drawing.Point(124, 16);
-            this.lstDanhSach.Name = "lstDanhSach";
-            this.lstDanhSach.Size = new System.Drawing.Size(115, 174);
-            this.lstDanhSach.TabIndex = 3;
-            this.lstDanhSach.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDanhSach_DragDrop);
-            this.lstDanhSach.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_DragEnter);
-            this.lstDanhSach.MouseDown += new System.Windows.Forms.MouseEventHandler(this.ListBox_MouseDown);
-            // 
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnSave.ImageIndex = 0;
             this.btnSave.ImageList = this.imageList1;
-            this.btnSave.Location = new System.Drawing.Point(215, 226);
+            this.btnSave.Location = new System.Drawing.Point(216, 226);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(24, 23);
-            this.btnSave.TabIndex = 7;
+            this.btnSave.TabIndex = 6;
             this.toolTip1.SetToolTip(this.btnSave, "Lưu danh sách con thú vào file danhsachthu.txt");
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.Save);
@@ -130,6 +118,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label2, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.label1, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblTime, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.btnDelete, 0, 3);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 24);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -138,8 +127,22 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 30F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(242, 253);
+            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(243, 253);
             this.tableLayoutPanel1.TabIndex = 5;
+            // 
+            // lstDanhSach
+            // 
+            this.lstDanhSach.AllowDrop = true;
+            this.lstDanhSach.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lstDanhSach.FormattingEnabled = true;
+            this.lstDanhSach.Location = new System.Drawing.Point(124, 16);
+            this.lstDanhSach.Name = "lstDanhSach";
+            this.lstDanhSach.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.lstDanhSach.Size = new System.Drawing.Size(116, 174);
+            this.lstDanhSach.TabIndex = 3;
+            this.lstDanhSach.DragDrop += new System.Windows.Forms.DragEventHandler(this.lstDanhSach_DragDrop);
+            this.lstDanhSach.DragEnter += new System.Windows.Forms.DragEventHandler(this.ListBox_DragEnter);
             // 
             // lblTime
             // 
@@ -148,8 +151,19 @@
             this.lblTime.Location = new System.Drawing.Point(3, 193);
             this.lblTime.Name = "lblTime";
             this.lblTime.Size = new System.Drawing.Size(115, 13);
-            this.lblTime.TabIndex = 5;
+            this.lblTime.TabIndex = 4;
             this.lblTime.Text = "Bây giờ là ..... ngày .....";
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnDelete.Location = new System.Drawing.Point(43, 226);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 5;
+            this.btnDelete.Text = "Xoá";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // menuStrip1
             // 
@@ -158,8 +172,8 @@
             this.sửaĐổiToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(242, 24);
-            this.menuStrip1.TabIndex = 6;
+            this.menuStrip1.Size = new System.Drawing.Size(243, 24);
+            this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
             // hToolStripMenuItem
@@ -206,7 +220,7 @@
             this.mnuCopy,
             this.mnuCut,
             this.mnuPaste,
-            this.xoáToolStripMenuItem});
+            this.mnuDelete});
             this.sửaĐổiToolStripMenuItem.Name = "sửaĐổiToolStripMenuItem";
             this.sửaĐổiToolStripMenuItem.Size = new System.Drawing.Size(58, 20);
             this.sửaĐổiToolStripMenuItem.Text = "Sửa đổi";
@@ -232,30 +246,33 @@
             this.mnuPaste.Size = new System.Drawing.Size(164, 22);
             this.mnuPaste.Text = "Dán";
             // 
-            // xoáToolStripMenuItem
+            // mnuDelete
             // 
-            this.xoáToolStripMenuItem.Name = "xoáToolStripMenuItem";
-            this.xoáToolStripMenuItem.Size = new System.Drawing.Size(164, 22);
-            this.xoáToolStripMenuItem.Text = "Xoá";
+            this.mnuDelete.Name = "mnuDelete";
+            this.mnuDelete.Size = new System.Drawing.Size(164, 22);
+            this.mnuDelete.Text = "Xoá";
+            this.mnuDelete.Click += new System.EventHandler(this.mnuDelete_Click);
             // 
             // timer1
             // 
+            this.timer1.Enabled = true;
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // frmSaigonZoo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(242, 277);
+            this.ClientSize = new System.Drawing.Size(243, 277);
             this.Controls.Add(this.tableLayoutPanel1);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
+            this.MinimumSize = new System.Drawing.Size(259, 316);
             this.Name = "frmSaigonZoo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "So Thu Xi Gon";
-            this.Load += new System.EventHandler(this.frmSaigonZoo_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmSaigonZoo_FormClosing);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableLayoutPanel1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
@@ -270,7 +287,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.ListBox lstThuMoi;
-        private System.Windows.Forms.ListBox lstDanhSach;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
@@ -287,7 +303,9 @@
         private System.Windows.Forms.Button btnSave;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.ToolStripMenuItem xoáToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mnuDelete;
+        private System.Windows.Forms.ListBox lstDanhSach;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
 
