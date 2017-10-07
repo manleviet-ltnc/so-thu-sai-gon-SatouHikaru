@@ -83,14 +83,14 @@ namespace SaigonZoo
                 lstThuMoi.Items.Add(input);
             reader.Close();
 
-            isLoad = true;
-
             using (StreamReader rs = new StreamReader("danhsachthu.txt"))
             {
                 input = null;
                 while ((input = rs.ReadLine()) != null)
                     lstDanhSach.Items.Add(input);
             }
+
+            isLoad = true;
         }
 
         private void mnuClose_Click(object sender, EventArgs e)
