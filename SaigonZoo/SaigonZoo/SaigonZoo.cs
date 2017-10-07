@@ -83,14 +83,14 @@ namespace SaigonZoo
                 lstThuMoi.Items.Add(input);
             reader.Close();
 
+            isLoad = true;
+
             using (StreamReader rs = new StreamReader("danhsachthu.txt"))
             {
                 input = null;
                 while ((input = rs.ReadLine()) != null)
                     lstDanhSach.Items.Add(input);
             }
-
-            isLoad = true;
         }
 
         private void mnuClose_Click(object sender, EventArgs e)
@@ -102,6 +102,8 @@ namespace SaigonZoo
         {
             while (lstDanhSach.SelectedIndex != -1)
                 lstDanhSach.Items.RemoveAt(lstDanhSach.SelectedIndex);
+
+            isItemChanged = true;
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -124,22 +126,23 @@ namespace SaigonZoo
         {
             if (isLoad == true)
             {
-                if (isSave && isItemChanged)
-                {
-                    DialogResult result = MessageBox.Show("Bạn có muốn lưu danh sách?",
-                                                          "",
-                                                          MessageBoxButtons.YesNoCancel,
-                                                          MessageBoxIcon.None);
-                    if (result == DialogResult.Yes)
+                if (isItemChanged)
+                    if (isSave)
                     {
-                        Save(sender, e);
-                        e.Cancel = false;
+                        DialogResult result = MessageBox.Show("Bạn có muốn lưu danh sách?",
+                                                              "",
+                                                              MessageBoxButtons.YesNoCancel,
+                                                              MessageBoxIcon.None);
+                        if (result == DialogResult.Yes)
+                        {
+                            Save(sender, e);
+                            e.Cancel = false;
+                        }
+                        else if (result == DialogResult.No)
+                            e.Cancel = false;
+                        else
+                            e.Cancel = true;
                     }
-                    else if (result == DialogResult.No)
-                        e.Cancel = false;
-                    else
-                        e.Cancel = true;
-                }
             }
             else
                 mnuClose_Click(sender, e);
