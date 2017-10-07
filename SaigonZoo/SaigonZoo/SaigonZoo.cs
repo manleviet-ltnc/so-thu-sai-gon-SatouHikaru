@@ -35,6 +35,7 @@ namespace SaigonZoo
                 e.Effect = DragDropEffects.Move;
         }
 
+        bool isItemChanged = false;
         private void lstDanhSach_DragDrop(object sender, DragEventArgs e)
         {
             if (e.Data.GetDataPresent(DataFormats.Text))
@@ -48,6 +49,8 @@ namespace SaigonZoo
                         lstDanhSach.Items.Insert(newIndex, selectedItem);
                     else
                         lstDanhSach.Items.Insert(lstDanhSach.Items.Count, selectedItem);
+
+                    isItemChanged = true;
                 }
         }
 
@@ -121,7 +124,7 @@ namespace SaigonZoo
         {
             if (isLoad == true)
             {
-                if (isSave)
+                if (isSave && isItemChanged)
                 {
                     DialogResult result = MessageBox.Show("Bạn có muốn lưu danh sách?",
                                                           "",
