@@ -106,6 +106,7 @@
             this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Save.ico");
+            this.imageList1.Images.SetKeyName(1, "Delete-icon.jpg");
             // 
             // tableLayoutPanel1
             // 
@@ -157,11 +158,12 @@
             // btnDelete
             // 
             this.btnDelete.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDelete.Location = new System.Drawing.Point(43, 226);
+            this.btnDelete.ImageKey = "Delete-icon.jpg";
+            this.btnDelete.ImageList = this.imageList1;
+            this.btnDelete.Location = new System.Drawing.Point(94, 226);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.Size = new System.Drawing.Size(24, 23);
             this.btnDelete.TabIndex = 5;
-            this.btnDelete.Text = "Xoá";
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -248,6 +250,7 @@
             // 
             // mnuDelete
             // 
+            this.mnuDelete.Image = ((System.Drawing.Image)(resources.GetObject("mnuDelete.Image")));
             this.mnuDelete.Name = "mnuDelete";
             this.mnuDelete.Size = new System.Drawing.Size(164, 22);
             this.mnuDelete.Text = "Xoá";

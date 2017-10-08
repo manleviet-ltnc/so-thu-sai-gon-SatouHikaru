@@ -66,11 +66,11 @@ namespace SaigonZoo
             foreach (var item in lstDanhSach.Items)
                 write.WriteLine(item.ToString());
 
-            isSave = false;
             write.Close();
+
+            isSave = false;
         }
 
-        bool isLoad = false;
         private void mnuLoad_Click(object sender, EventArgs e)
         {
             StreamReader reader = new StreamReader("thumoi.txt");
@@ -89,8 +89,6 @@ namespace SaigonZoo
                 while ((input = rs.ReadLine()) != null)
                     lstDanhSach.Items.Add(input);
             }
-
-            isLoad = true;
         }
 
         private void mnuClose_Click(object sender, EventArgs e)
@@ -124,25 +122,24 @@ namespace SaigonZoo
 
         private void frmSaigonZoo_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (isLoad == true)
+            if (isItemChanged == true)
             {
-                if (isItemChanged)
-                    if (isSave)
+                if(isSave)
+                {
+                    DialogResult result = MessageBox.Show("Bạn có muốn lưu danh sách?",
+                                                          "",
+                                                          MessageBoxButtons.YesNoCancel,
+                                                          MessageBoxIcon.None);
+                    if (result == DialogResult.Yes)
                     {
-                        DialogResult result = MessageBox.Show("Bạn có muốn lưu danh sách?",
-                                                              "",
-                                                              MessageBoxButtons.YesNoCancel,
-                                                              MessageBoxIcon.None);
-                        if (result == DialogResult.Yes)
-                        {
-                            Save(sender, e);
-                            e.Cancel = false;
-                        }
-                        else if (result == DialogResult.No)
-                            e.Cancel = false;
-                        else
-                            e.Cancel = true;
+                        Save(sender, e);
+                        e.Cancel = false;
                     }
+                    else if (result == DialogResult.No)
+                        e.Cancel = false;
+                    else
+                        e.Cancel = true;
+                }
             }
             else
                 mnuClose_Click(sender, e);
