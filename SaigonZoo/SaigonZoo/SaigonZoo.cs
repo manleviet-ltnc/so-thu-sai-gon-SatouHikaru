@@ -71,6 +71,11 @@ namespace SaigonZoo
             isSave = false;
         }
 
+        private void mnuSave_Click(object sender, EventArgs e)
+        {
+            Save(sender, e);
+        }
+
         private void mnuLoad_Click(object sender, EventArgs e)
         {
             StreamReader reader = new StreamReader("thumoi.txt");

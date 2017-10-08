@@ -203,6 +203,7 @@
             this.mnuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
             this.mnuSave.Size = new System.Drawing.Size(191, 22);
             this.mnuSave.Text = "Lưu danh sách";
+            this.mnuSave.Click += new System.EventHandler(this.mnuSave_Click);
             // 
             // toolStripSeparator1
             // 
